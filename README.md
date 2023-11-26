@@ -15,7 +15,7 @@ The primary goal is to showcase how specific app directories can be served as su
     ├── home/
     │   ├── page.tsx
     └── admin/
-        ├── page.tsx
+    │   ├── page.tsx
     └── layout.tsx
 ```
 
