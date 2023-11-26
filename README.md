@@ -1,16 +1,39 @@
 # NextJS App Router Directories as Subdomains
 
-This repository show cases how to use NGINX with NextJS to route directories as subdomains. This is additional material for the article [Subdomain Routing using directories in NextJS App Router (NGINX)](https://code-specialist.com/good-to-know/nextjs-approuter-subdomain).
+This repository demonstrates the integration of NGINX with Next.js to facilitate the routing of directories as subdomains.
+It serves as supplementary material for the article [Subdomain Routing using directories in Next.js App Router (NGINX).](https://code-specialist.com/good-to-know/nextjs-approuter-subdomain)
+
+## Objective and Anticipated Outcome
+
+The primary goal is to showcase how specific app directories can be served as subdomains using NGINX with Next.js. Consider the following desired outcome:
+
+```
+.
+└── app/
+    ├── blog/
+    │   ├── page.tsx
+    ├── home/
+    │   ├── page.tsx
+    └── admin/
+        ├── page.tsx
+    └── layout.tsx
+```
+
+- `/blog` on `blog.code-specialist.local`
+- `/home` on `code-specialist.local`
+- `/admin` on `admin.code-specialist.local`
 
 ## Hosts file
 
-You will need to add the following entries to your hosts file:
+Ensure that the following entries are added to your hosts file:
 
 ```
 127.0.0.1 admin.code-specialist.local
 127.0.0.1 code-specialist.local
 127.0.0.1 blog.code-specialist.com
 ```
+
+The hosts file is located at `/etc/hosts` for MacOS and Linux-based systems and `C:\Windows\System32\drivers\etc\hosts` for Windows.
 
 ## Pre-requisites
 
@@ -19,15 +42,21 @@ You will need to add the following entries to your hosts file:
 - NodeJS
 - NPM
 
-## How to run
+## How to use
 
-### Reverse Proxy
+### Set Up Reverse Proxy
 
-1. Go to the nginx directory e.g. `cd nginx`
-2. Run `docker-compose up` in a terminal to start the reverse proxy
+1. Navigate to the nginx directory, e.g., cd nginx.
+2. In a terminal, execute `docker-compose up` to launch the reverse proxy.
 
-### NextJS
-1. Go to the nextjs directory e.g. `cd nextjs`
-2. Install the dependencies `npm install`
-3. Run `npm run dev` in a terminal to start the NextJS app
-4. Visit `http://code-specialist.local` / `http://admin.code-specialist.local` / `http://blog.code-specialist.local` in your browser
+### Run Next.js Application
+
+1. Move to the nextjs directory, e.g., cd nextjs.
+2. Install the necessary dependencies using npm install.
+3. Start the Next.js app by running npm run dev in a terminal.
+4. Visit the following URLs in your browser:
+   - http://code-specialist.local
+   - http://admin.code-specialist.local
+   - http://blog.code-specialist.local
+
+By following these steps, you'll successfully implement subdomain routing for specific app directories using NGINX and Next.js. For a detailed walkthrough, refer to the linked article
