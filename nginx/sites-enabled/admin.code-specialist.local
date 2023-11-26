@@ -1,0 +1,40 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    keepalive_timeout 60;
+
+    server_name admin.code-specialist.local;
+
+    # Exclude resource requests from being rewritten
+    location ~* \.(js|css|svg|jpg|jpeg|png|gif|ico|json|woff|woff2|ttf|eot)$ {
+        proxy_pass http://host.docker.internal:3000;
+        proxy_http_version 1.1; 
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+
+    # Exclude requests to /_next from being rewritten
+    location ^~ /_next {
+        proxy_pass http://host.docker.internal:3000;
+        proxy_http_version 1.1; 
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+
+    location / {
+        proxy_pass http://host.docker.internal:3000/admin;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+
+
+    # Named location for non-root paths
+    location ~ ^/(?<path>.+)$ {
+        proxy_pass http://host.docker.internal:3000/admin/$path;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
