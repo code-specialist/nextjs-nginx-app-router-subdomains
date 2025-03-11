@@ -30,7 +30,7 @@ Ensure that the following entries are added to your hosts file:
 ```
 127.0.0.1 admin.code-specialist.local
 127.0.0.1 code-specialist.local
-127.0.0.1 blog.code-specialist.com
+127.0.0.1 blog.code-specialist.local
 ```
 
 The hosts file is located at `/etc/hosts` for MacOS and Linux-based systems and `C:\Windows\System32\drivers\etc\hosts` for Windows.
